@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code Generator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+   
+  }
+  #qrCodeContainer:hover {
+    margin-top: 20px;
+  }
+  #generateBtn:hover{
+    color: blue;
+  }
+</style>
+</head>
+<body style="text-align: center;">
+  <h1 style="background-color: rgb(252, 251, 250); color: red;"><u>QR Code Generator</u></h1>
+  <label for="inputText"><b><u>Enter your message or URL:</u></b></label><br><br>
+  <input type="text" id="inputText" placeholder="Enter text">
+  <button id="generateBtn">Generate QR Code</button>
+  <div id="qrCodeContainer">
+  </div>
+
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+  <script>
+    const generateBtn = document.getElementById('generateBtn');
+    const inputText = document.getElementById('inputText');
+    const qrCodeContainer = document.getElementById('qrCodeContainer');
+
+    generateBtn.addEventListener('click', () => {
+      const inputValue = inputText.value;
+      if (inputValue.trim() !== '') {
+        generateQRCode(inputValue);
+      }
+    });
+
+    function generateQRCode(text) {
+      qrCodeContainer.innerHTML = ''; // Clear previous QR code
+      const qrcode = new QRCode(qrCodeContainer, {
+        text: text,
+        width: 200,
+        height: 200,
+      });
+    }
+  </script>
+</body>
+</html>
